@@ -30,7 +30,7 @@ export default function Home() {
         </div>
         <div className="hidden md:flex justify-end py-2">
           <span className={`text-xs px-2 py-1 rounded-full ${mode === "real" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"}`}>
-            {mode === "real" ? "Live • Supabase connected" : "Demo Mode — Supabase keys .env.local me dalo"}
+            {mode === "real" ? "Live • Supabase connected" : "Demo Mode"}
           </span>
         </div>
 
@@ -46,7 +46,15 @@ export default function Home() {
         </div>
 
         <div className="max-w-lg mx-auto">
-          {posts.length === 0 && <p className="text-center text-gray-500 py-10">Loading...</p>}
+          {posts.length === 0 && mode === "demo" && <p className="text-center text-gray-500 py-10">Loading...</p>}
+          {posts.length === 0 && mode === "real" && (
+            <div className="text-center py-16">
+              <p className="text-4xl mb-3">📸</p>
+              <p className="font-semibold text-lg">Abhi koi post nahi hai</p>
+              <p className="text-gray-500 text-sm mt-1">Pehla post banao — photo compress hoke cloud me save hoga, ₹0 kharcha!</p>
+              <a href="/create" className="inline-block mt-4 bg-black text-white px-5 py-2 rounded-lg text-sm font-medium">Post banao</a>
+            </div>
+          )}
           {posts.map((p) => <PostCard key={p.id} post={p} />)}
         </div>
       </main>
