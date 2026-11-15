@@ -76,3 +76,17 @@ create policy "users insert like" on likes for insert with check (auth.uid() = u
 create policy "users delete own like" on likes for delete using (auth.uid() = user_id);
 create policy "users insert comment" on comments for insert with check (auth.uid() = user_id);
 create policy "users delete own comment" on comments for delete using (auth.uid() = user_id);
+
+-- Storage policies (fix: RLS error)
+create policy "public read posts" on storage.objects for select using (bucket_id = 'posts');
+create policy "public read avatars" on storage.objects for select using (bucket_id = 'avatars');
+create policy "public read stories" on storage.objects for select using (bucket_id = 'stories');
+create policy "auth upload posts" on storage.objects for insert with check (bucket_id = 'posts' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth update posts" on storage.objects for update using (bucket_id = 'posts' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth delete posts" on storage.objects for delete using (bucket_id = 'posts' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth upload avatars" on storage.objects for insert with check (bucket_id = 'avatars' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth update avatars" on storage.objects for update using (bucket_id = 'avatars' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth delete avatars" on storage.objects for delete using (bucket_id = 'avatars' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth upload stories" on storage.objects for insert with check (bucket_id = 'stories' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth update stories" on storage.objects for update using (bucket_id = 'stories' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
+create policy "auth delete stories" on storage.objects for delete using (bucket_id = 'stories' and auth.role() = 'authenticated' and (storage.foldername(name))[1] = auth.uid()::text);
