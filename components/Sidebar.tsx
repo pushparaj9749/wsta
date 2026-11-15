@@ -7,6 +7,7 @@ export default function Sidebar() {
     { icon: "❤️", label: "Notifications", href: "/notifications" },
     { icon: "➕", label: "Create", href: "/create" },
     { icon: "👤", label: "Profile", href: "/profile/you" },
+    { icon: "🔑", label: "Login", href: "/login" },
   ];
   return (
     <aside className="hidden md:flex flex-col w-60 shrink-0 border-r border-gray-200 px-3 py-6 sticky top-0 h-screen">
