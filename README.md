@@ -2,6 +2,9 @@
 
 Photo sharing app. **Compress + Cloud Storage** wala plan — public post bina lock, sirf compress hoga.
 
+## Live Site ✅
+**https://wsta.vercel.app** — Vercel pe deployed, Supabase connected (Live mode)
+
 ## Features (MVP)
 - Home Feed (Supabase DB se, demo fallback), Stories, Explore, Profile
 - Post upload (client-side WebP compress: 5MB → ~250KB)
@@ -39,7 +42,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 | Cloudflare R2 (ready) | Baad me, zero egress | Free 10GB |
 
 ## Deploy (free)
-Vercel pe import karo → env vars dalo → deploy. Domain baad me ₹200 me `.in`.
+Vercel project `wsta` — GitHub `pushparaj9749/wsta` branch `arena/bd13a252-wsta` se deploy hota hai.
+Env vars Vercel me set hain. Domain baad me ₹200 me `.in`.
 
 ## GitHub Actions
 `.github/workflows/ci.yml` — har push pe typecheck + build.
